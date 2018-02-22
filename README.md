@@ -1,4 +1,14 @@
+## Requirement
+* Unicorn 
+    - You can install with ``` gem install 'unicorn' ```
+* Rails application
+
 ## Usage
+Download deployer file
+```bash
+curl -LsS https://raw.githubusercontent.com/iamalirezaj/deploy_with_unicorn/develop/deploy.rb -o ./deploy.rb
+```
+
 Use the command like this
 
     $ ruby deploy.rb --help
