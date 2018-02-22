@@ -6,7 +6,7 @@
 ## Usage
 Download deployer file
 ```bash
-curl -LsS https://raw.githubusercontent.com/iamalirezaj/deploy_with_unicorn/develop/deploy.rb -o ./deploy.rb
+curl -LsS https://git.io/vAgP6 -o ./deploy.rb
 ```
 
 Use the command like this
