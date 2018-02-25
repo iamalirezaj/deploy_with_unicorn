@@ -12,10 +12,6 @@ OptionParser.new do |parser|
 
   parser.banner = "Usage: deploy.rb [options]"
 
-  parser.on("-s", "--start", "Start the deploy") do |v|
-    options[:start] = v
-  end
-
   options[:pid_file] = '#{workdir}/tmp/pids/unicorn.pid'
   parser.on("-p", "--pid-file file", "Pid file path") do |v|
     options[:pid_file] = v
@@ -44,6 +40,11 @@ OptionParser.new do |parser|
   options[:timeout] = 30
   parser.on("-t", "--timeout num", "Timeout") do |v|
     options[:timeout] = v
+  end
+
+  options[:env] = "development"
+  parser.on("-e", "--env RAILS_ENV", "Environment") do |v|
+    options[:env] = v
   end
 end.parse!
 
@@ -82,10 +83,11 @@ timeout ' + options[:timeout].to_s )
   unicorn_config_file
 end
 
-# Start the deploy
-if options[:start]
+file = create_config_file(options)
 
-  file = create_config_file(options)
+if Bundler.clean_exec("unicorn --env='#{options[:env].to_s}' --config-file='#{file}' --daemonize")
 
-  Bundler.clean_exec("unicorn -c #{file} -D")
+  puts "Socket file created successfully. you can add it to nginx with below path. "
+  puts options[:socket_file]
 end
+

@@ -24,7 +24,7 @@ Add your custom arguments in command line
 | `--socket-file` | string | The class of item |
 | `--workers` | integer | Number of workers |
 | `--timeout` | integer | Number of timeout |
-| `--start` | none | Start the deploy |
+| `--env` | string | Rails application environment - default: development |
 
 ## Deploy
 Deploy your rails application with unicorn to create socket file
